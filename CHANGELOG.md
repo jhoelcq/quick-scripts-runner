@@ -2,7 +2,7 @@
 
 All notable changes to the "Scripts Runner" extension will be documented in this file.
 
-## [1.0.0] - 2024-12-XX
+## [1.0.0] - 2026-01-11
 
 ### Added
 
