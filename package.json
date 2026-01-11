@@ -126,6 +126,7 @@
     "watch": "tsc -watch -p ./",
     "pretest": "pnpm run compile && pnpm run lint",
     "test": "node ./out/test/run-test.js",
+    "test:vscode": "node ./node_modules/@vscode/test-electron/out/main.js --extensionDevelopmentPath=. --extensionTestsPath=./out/test/suite/index",
     "lint": "eslint .",
     "format": "prettier --write 'src/**/*.ts'"
   },
