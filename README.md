@@ -1,175 +1,194 @@
-# Scripts Runner - Extensión VS Code
+# Scripts Runner - VS Code Extension
 
-Una extensión profesional de VS Code que permite ejecutar scripts de `package.json` con un solo clic desde el sidebar, con detección automática del gestor de paquetes.
+A professional VS Code extension that allows you to execute `package.json` scripts with a single click from the sidebar, featuring automatic package manager detection.
 
-## 🎯 Características Principales
+## 🎯 Key Features
 
-- ✅ **Detección automática** del gestor de paquetes (npm, pnpm, yarn, bun)
-- ✅ **Vista en sidebar** con todos los scripts disponibles
-- ✅ **Ejecución con un clic** directamente desde el explorador
-- ✅ **Actualización automática** cuando cambia el `package.json`
-- ✅ **Status bar** mostrando el gestor de paquetes actual
-- ✅ **Soporte multi-workspace**
-- ✅ **Interfaz intuitiva** y fácil de usar
+- ✅ **Automatic detection** of package managers (npm, pnpm, yarn, bun)
+- ✅ **Sidebar view** displaying all available scripts
+- ✅ **One-click execution** directly from the explorer
+- ✅ **Auto-refresh** when `package.json` changes
+- ✅ **Status bar** indicator showing the current package manager
+- ✅ **Multi-workspace support**
+- ✅ **Intuitive interface** with seamless user experience
 
-## 📸 Capturas de Pantalla
+## 📸 Screenshots
 
-La extensión agrega una nueva sección "Scripts Runner" en el sidebar del explorador, mostrando todos los scripts disponibles de tu `package.json`.
+The extension adds a new "Scripts Runner" section in the explorer sidebar, displaying all available scripts from your `package.json`.
 
-## 🚀 Instalación
+## 🚀 Installation
 
-### Desde el Marketplace (próximamente)
+### From Marketplace (Coming Soon)
 
-1. Abre VS Code
-2. Ve a la pestaña de Extensiones
-3. Busca "Scripts Runner"
-4. Haz clic en Instalar
+1. Open VS Code
+2. Navigate to Extensions
+3. Search for "Scripts Runner"
+4. Click Install
 
-### Desde el código fuente
+### From Source
 
-1. Clona este repositorio
-2. Abre la carpeta en VS Code
-3. Ejecuta `npm install`
-4. Presiona `F5` para abrir una nueva ventana de VS Code con la extensión cargada
+1. Clone this repository
+2. Open the folder in VS Code
+3. Run `pnpm install`
+4. Press `F5` to open a new VS Code window with the extension loaded
 
-## 📖 Uso
+## 📖 Usage
 
-### Ejecutar un Script
+### Execute a Script
 
-1. Abre el sidebar del explorador
-2. Expande la sección "Scripts Runner"
-3. Haz clic en cualquier script para ejecutarlo
-4. El script se ejecutará en una terminal integrada
+1. Open the explorer sidebar
+2. Expand the "Scripts Runner" section
+3. Click on any script to execute it
+4. The script will run in an integrated terminal
 
-### Refrescar Scripts
+### Refresh Scripts
 
-- Haz clic en el botón de refrescar (🔄) en la barra de título de la vista
-- O usa el comando: `Scripts Runner: Refrescar Scripts`
+- Click the refresh button (🔄) in the view title bar
+- Or use the command: `Scripts Runner: Refresh Scripts`
 
-### Cambiar Gestor de Paquetes
+### Change Package Manager
 
-- Haz clic en el botón de gestor de paquetes (📦) en la barra de título
-- O haz clic en el status bar item
-- Selecciona el gestor deseado (npm, pnpm, yarn, bun)
+- Click the package manager button (📦) in the title bar
+- Or click on the status bar item
+- Select the desired package manager (npm, pnpm, yarn, bun)
 
-### Abrir package.json
+### Open package.json
 
-- Haz clic en el botón de archivo (📄) en la barra de título
-- O usa el comando: `Scripts Runner: Abrir package.json`
+- Click the file button (📄) in the title bar
+- Or use the command: `Scripts Runner: Open package.json`
 
-## ⚙️ Configuración
+## ⚙️ Configuration
 
-La extensión se puede configurar desde las opciones de VS Code:
+The extension can be configured from VS Code settings:
 
 ### `scriptsRunner.defaultPackageManager`
 
-Gestor de paquetes por defecto cuando no se puede detectar automáticamente.
+Default package manager when automatic detection is not possible.
 
-- **Valores**: `npm`, `pnpm`, `yarn`, `bun`
-- **Por defecto**: `npm`
+- **Values**: `npm`, `pnpm`, `yarn`, `bun`
+- **Default**: `npm`
 
 ### `scriptsRunner.autoDetectPackageManager`
 
-Habilita o deshabilita la detección automática del gestor de paquetes.
+Enable or disable automatic package manager detection.
 
-- **Valores**: `true`, `false`
-- **Por defecto**: `true`
+- **Values**: `true`, `false`
+- **Default**: `true`
 
-## 🎨 Casos de Uso Soportados
+## 🎨 Supported Use Cases
 
-La extensión funciona con cualquier proyecto que tenga un `package.json`, incluyendo:
+The extension works with any project that has a `package.json`, including:
 
-- ✅ **Node.js** - Proyectos estándar de Node.js
-- ✅ **React/Vue/Angular** - Frameworks frontend
-- ✅ **PHP/Symfony** - Con scripts personalizados en package.json
-- ✅ **Go** - Con comandos de compilación definidos
-- ✅ **Python/Django** - Con scripts de manage.py
-- ✅ **Ruby on Rails** - Con scripts personalizados
-- ✅ **Cualquier proyecto** con package.json personalizado
+- ✅ **Node.js** - Standard Node.js projects
+- ✅ **React/Vue/Angular** - Frontend frameworks
+- ✅ **PHP/Symfony** - With custom scripts in package.json
+- ✅ **Go** - With build commands defined
+- ✅ **Python/Django** - With manage.py scripts
+- ✅ **Ruby on Rails** - With custom scripts
+- ✅ **Any project** with custom package.json
 
-## 🏗️ Arquitectura
+## 🧪 Development
 
-La extensión está construida siguiendo principios SOLID:
+### Prerequisites
 
-- **Single Responsibility**: Cada clase tiene una única responsabilidad
-- **Open/Closed**: Extensible mediante interfaces
-- **Liskov Substitution**: Implementaciones intercambiables
-- **Interface Segregation**: Interfaces pequeñas y específicas
-- **Dependency Inversion**: Dependencias inyectadas, no instanciadas
-
-## 🧪 Desarrollo
-
-### Requisitos
-
-- Node.js 18+
+- Node.js >= 18
+- pnpm >= 10.0.0
 - TypeScript 5.0+
 - VS Code 1.70+
 
-### Comandos Disponibles
+### Available Commands
 
 ```bash
-# Instalar dependencias
-npm install
+# Install dependencies
+pnpm install
 
-# Compilar
-npm run compile
+# Compile TypeScript
+pnpm run compile
 
-# Modo watch (compilación automática)
-npm run watch
+# Watch mode (auto-compilation)
+pnpm run watch
 
-# Linting
-npm run lint
+# Lint code
+pnpm run lint
 
-# Formatear código
-npm run format
+# Format code
+pnpm run format
 
-# Ejecutar tests
-npm test
+# Run tests
+pnpm test
 ```
 
-### Estructura del Proyecto
+### Package Manager Enforcement
 
-```
-scripts-runner/
-├── src/
-│   ├── extension.ts              # Entry point
-│   ├── core/                     # Lógica principal
-│   ├── models/                   # Modelos de datos
-│   ├── services/                 # Servicios
-│   ├── commands/                 # Comandos
-│   ├── utils/                    # Utilidades
-│   └── test/                     # Tests
-├── package.json                  # Manifest
-├── tsconfig.json                 # TypeScript config
-└── README.md                     # Documentación
-```
+This project enforces pnpm as the package manager:
 
-## 📝 Licencia
+- `packageManager` field in `package.json` specifies pnpm version
+- `preinstall` script blocks other package managers
+- `engines` field requires pnpm >= 10.0.0
+
+Attempting to use npm, yarn, or bun will be blocked automatically.
+
+### Testing the Extension
+
+1. Open the project in VS Code
+2. Press `F5` to launch the Extension Development Host
+3. In the new window, open a project with a `package.json`
+4. Check the "Scripts Runner" section in the explorer sidebar
+
+## 📝 License
 
 MIT
 
-## 🤝 Contribuciones
+## 🤝 Contributing
 
-Las contribuciones son bienvenidas. Por favor:
+Contributions are welcome! Please follow these steps:
 
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+1. Fork the repository
+2. Create a feature branch using kebab-case (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'feat: Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## 🐛 Reportar Problemas
+### Commit Convention
 
-Si encuentras algún problema, por favor abre un issue en el repositorio con:
-- Descripción del problema
-- Pasos para reproducir
-- Versión de VS Code
-- Sistema operativo
+This project follows [Conventional Commits](https://www.conventionalcommits.org/):
 
-## 📧 Contacto
+- `feat:` New features
+- `fix:` Bug fixes
+- `refactor:` Code refactoring
+- `chore:` Maintenance tasks
+- `docs:` Documentation updates
 
-Para preguntas o sugerencias, abre un issue en el repositorio.
+### Branch Naming
+
+Use kebab-case for branch names:
+
+- ✅ `feature/add-new-command`
+- ✅ `fix/package-manager-detection`
+- ✅ `refactor/command-structure`
+
+## 🐛 Reporting Issues
+
+If you encounter any issues, please open an issue in the repository with:
+
+- Description of the problem
+- Steps to reproduce
+- VS Code version
+- Operating system
+- Expected vs actual behavior
+
+## 📧 Contact
+
+For questions or suggestions, please open an issue in the repository.
+
+**Author**: Francisco Luis Rios Vega  
+**Email**: alckordev@gmail.com  
+**Website**: https://alckor.dev
+
+## 🙏 Acknowledgments
+
+Original idea by [Jhoel Cordova](https://github.com/jhoelcq).
 
 ---
 
-Hecho con ❤️ para la comunidad de desarrolladores
+Made with ❤️ for the developer community
