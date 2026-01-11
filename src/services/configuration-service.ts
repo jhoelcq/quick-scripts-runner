@@ -14,7 +14,7 @@ export interface IConfigurationService {
  * Implementation of VS Code configuration service
  */
 export class ConfigurationService implements IConfigurationService {
-  private readonly configSection = 'scriptsRunner';
+  private readonly configSection = 'quickScriptsRunner';
 
   /**
    * Gets the default package manager from configuration

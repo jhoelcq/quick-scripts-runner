@@ -19,7 +19,7 @@ export class StatusBarService implements IStatusBarService {
 
   constructor() {
     this.statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
-    this.statusBarItem.command = 'scriptsRunner.changePackageManager';
+    this.statusBarItem.command = 'quickScriptsRunner.changePackageManager';
   }
 
   /**

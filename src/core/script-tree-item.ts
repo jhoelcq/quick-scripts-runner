@@ -24,7 +24,7 @@ export class ScriptTreeItem extends vscode.TreeItem {
     this.iconPath = new vscode.ThemeIcon('run');
     this.contextValue = 'script';
     this.command = {
-      command: 'scriptsRunner.runScript',
+      command: 'quickScriptsRunner.runScript',
       title: 'Run Script',
       arguments: [script, workspaceFolder],
     };

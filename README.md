@@ -1,4 +1,4 @@
-# Scripts Runner
+# Quick Scripts Runner
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.70%2B-blue.svg)
@@ -16,7 +16,7 @@ The ultimate Visual Studio Code extension for running npm, pnpm, yarn, and bun s
 
 ### 🎯 Core Functionality
 
-- **📋 Scripts Sidebar View**: A dedicated "Scripts Runner" panel in the Explorer view that displays all available scripts from your `package.json`
+- **📋 Scripts Sidebar View**: A dedicated "Quick Scripts Runner" panel in the Explorer view that displays all available scripts from your `package.json`
 - **🚀 One-Click Execution**: Execute any script with a single click—no terminal commands needed
 - **🔍 Automatic Package Manager Detection**: Intelligently detects your package manager (npm, pnpm, yarn, bun) based on lock files
 - **🔄 Auto-Refresh**: Automatically updates the scripts list when `package.json` or lock files change
@@ -33,7 +33,7 @@ The ultimate Visual Studio Code extension for running npm, pnpm, yarn, and bun s
 
 ## 📸 Screenshots
 
-> **Note**: Screenshots coming soon. The extension adds a new "Scripts Runner" section in the explorer sidebar, displaying all available scripts from your `package.json`.
+> **Note**: Screenshots coming soon. The extension adds a new "Quick Scripts Runner" section in the explorer sidebar, displaying all available scripts from your `package.json`.
 
 ## 🚀 Installation
 
@@ -41,13 +41,13 @@ The ultimate Visual Studio Code extension for running npm, pnpm, yarn, and bun s
 
 1. Open VS Code
 2. Press `Ctrl+Shift+X` (or `Cmd+Shift+X` on Mac) to open Extensions
-3. Search for **"Scripts Runner"**
+3. Search for **"Quick Scripts Runner"**
 4. Click **Install**
 
 Or install via command line:
 
 ```bash
-code --install-extension alckordev.scripts-runner
+code --install-extension alckordev.quick-scripts-runner
 ```
 
 ### From Source
@@ -64,19 +64,19 @@ code --install-extension alckordev.scripts-runner
 #### Method 1: From Sidebar
 
 1. Open the Explorer sidebar (View → Explorer or `Ctrl+Shift+E`)
-2. Locate the **"Scripts Runner"** section
+2. Locate the **"Quick Scripts Runner"** section
 3. Click on any script to execute it
 4. The script runs in an integrated terminal with the correct package manager
 
 #### Method 2: From Command Palette
 
 1. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac)
-2. Type "Scripts Runner: Run Script"
+2. Type "Quick Scripts Runner: Run Script"
 3. Select the script from the list
 
 #### Method 3: Right-Click Context Menu
 
-- Right-click on any script in the Scripts Runner view
+- Right-click on any script in the Quick Scripts Runner view
 - Select "Run Script" from the context menu
 
 ### Refreshing Scripts
@@ -89,14 +89,14 @@ The scripts list automatically refreshes when:
 
 **Manual Refresh**:
 
-- Click the refresh button (🔄) in the Scripts Runner view title bar
-- Or use the command: `Scripts Runner: Refresh Scripts` (`Ctrl+Shift+P`)
+- Click the refresh button (🔄) in the Quick Scripts Runner view title bar
+- Or use the command: `Quick Scripts Runner: Refresh Scripts` (`Ctrl+Shift+P`)
 
 ### Changing Package Manager
 
 #### Method 1: From View Title Bar
 
-1. Click the package manager button (📦) in the Scripts Runner view title bar
+1. Click the package manager button (📦) in the Quick Scripts Runner view title bar
 2. Select your desired package manager from the quick pick menu
 
 #### Method 2: From Status Bar
@@ -107,8 +107,8 @@ The scripts list automatically refreshes when:
 #### Method 3: From Settings
 
 1. Open VS Code Settings (`Ctrl+,`)
-2. Search for "Scripts Runner"
-3. Set `scriptsRunner.defaultPackageManager` to your preferred manager
+2. Search for "Quick Scripts Runner"
+3. Set `quickScriptsRunner.defaultPackageManager` to your preferred manager
 
 **Note**: The extension will use your selection when auto-detection is disabled or when no lock files are found.
 
@@ -116,12 +116,12 @@ The scripts list automatically refreshes when:
 
 #### Method 1: From View Title Bar
 
-- Click the file button (📄) in the Scripts Runner view title bar
+- Click the file button (📄) in the Quick Scripts Runner view title bar
 
 #### Method 2: From Command Palette
 
 - Press `Ctrl+Shift+P`
-- Type "Scripts Runner: Open package.json"
+- Type "Quick Scripts Runner: Open package.json"
 - Press Enter
 
 #### Creating package.json
@@ -134,11 +134,11 @@ If `package.json` doesn't exist:
 
 ## 📁 Multi-Workspace Support
 
-When working with multiple workspace folders, Scripts Runner provides intelligent organization:
+When working with multiple workspace folders, Quick Scripts Runner provides intelligent organization:
 
 ### Single Workspace
 
-- Scripts are displayed directly in the Scripts Runner view
+- Scripts are displayed directly in the Quick Scripts Runner view
 - No folder hierarchy needed
 
 ### Multiple Workspaces
@@ -156,9 +156,9 @@ When working with multiple workspace folders, Scripts Runner provides intelligen
 
 ## ⚙️ Configuration
 
-Customize Scripts Runner through **Settings → Extensions → Scripts Runner**:
+Customize Quick Scripts Runner through **Settings → Extensions → Quick Scripts Runner**:
 
-### `scriptsRunner.defaultPackageManager`
+### `quickScriptsRunner.defaultPackageManager`
 
 Sets the default package manager when automatic detection is not possible or disabled.
 
@@ -171,11 +171,11 @@ Sets the default package manager when automatic detection is not possible or dis
 
 ```json
 {
-  "scriptsRunner.defaultPackageManager": "pnpm"
+  "quickScriptsRunner.defaultPackageManager": "pnpm"
 }
 ```
 
-### `scriptsRunner.autoDetectPackageManager`
+### `quickScriptsRunner.autoDetectPackageManager`
 
 Enables or disables automatic package manager detection based on lock files.
 
@@ -188,7 +188,7 @@ Enables or disables automatic package manager detection based on lock files.
 
 ```json
 {
-  "scriptsRunner.autoDetectPackageManager": false
+  "quickScriptsRunner.autoDetectPackageManager": false
 }
 ```
 
@@ -200,11 +200,11 @@ When auto-detection is enabled, the extension checks for lock files in this orde
 2. `yarn.lock` → **yarn**
 3. `bun.lockb` → **bun**
 4. `package-lock.json` → **npm**
-5. No lock file found → Uses `scriptsRunner.defaultPackageManager`
+5. No lock file found → Uses `quickScriptsRunner.defaultPackageManager`
 
 ## 🎨 Supported Use Cases
 
-Scripts Runner works with any project that has a `package.json`, regardless of the technology stack:
+Quick Scripts Runner works with any project that has a `package.json`, regardless of the technology stack:
 
 ### Frontend Frameworks
 
@@ -286,7 +286,7 @@ The extension icon should be placed in `images/icon.png`:
 1. Open the project in VS Code
 2. Press `F5` to launch the Extension Development Host
 3. In the new window, open a project with a `package.json`
-4. Check the "Scripts Runner" section in the explorer sidebar
+4. Check the "Quick Scripts Runner" section in the explorer sidebar
 5. Test script execution, package manager detection, and multi-workspace scenarios
 
 #### Running Unit Tests

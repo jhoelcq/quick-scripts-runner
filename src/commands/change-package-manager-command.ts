@@ -10,7 +10,7 @@ import { Logger } from '../utils/logger';
  * Command to change the package manager
  */
 export class ChangePackageManagerCommand implements ICommand {
-  readonly id = 'scriptsRunner.changePackageManager';
+  readonly id = 'quickScriptsRunner.changePackageManager';
 
   constructor(
     private readonly configService: IConfigurationService,

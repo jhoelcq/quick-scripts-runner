@@ -1,6 +1,6 @@
 {
-  "name": "scripts-runner",
-  "displayName": "Scripts Runner",
+  "name": "quick-scripts-runner",
+  "displayName": "Quick Scripts Runner",
   "description": "Execute package.json scripts with automatic package manager detection",
   "version": "1.0.0",
   "publisher": "alckordev",
@@ -31,21 +31,21 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/alckordev/scripts-runner.git"
+    "url": "https://github.com/alckordev/quick-scripts-runner.git"
   },
   "bugs": {
-    "url": "https://github.com/alckordev/scripts-runner/issues"
+    "url": "https://github.com/alckordev/quick-scripts-runner/issues"
   },
-  "homepage": "https://github.com/alckordev/scripts-runner#readme",
+  "homepage": "https://github.com/alckordev/quick-scripts-runner#readme",
   "activationEvents": [
     "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "configuration": {
-      "title": "Scripts Runner",
+      "title": "Quick Scripts Runner",
       "properties": {
-        "scriptsRunner.defaultPackageManager": {
+        "quickScriptsRunner.defaultPackageManager": {
           "type": "string",
           "default": "npm",
           "enum": [
@@ -56,7 +56,7 @@
           ],
           "description": "Default package manager"
         },
-        "scriptsRunner.autoDetectPackageManager": {
+        "quickScriptsRunner.autoDetectPackageManager": {
           "type": "boolean",
           "default": true,
           "description": "Automatically detect package manager"
@@ -66,29 +66,29 @@
     "views": {
       "explorer": [
         {
-          "id": "scriptsRunnerExplorer",
-          "name": "Scripts Runner"
+          "id": "quickScriptsRunnerExplorer",
+          "name": "Quick Scripts Runner"
         }
       ]
     },
     "commands": [
       {
-        "command": "scriptsRunner.runScript",
+        "command": "quickScriptsRunner.runScript",
         "title": "Run Script",
         "icon": "$(run)"
       },
       {
-        "command": "scriptsRunner.refresh",
+        "command": "quickScriptsRunner.refresh",
         "title": "Refresh Scripts",
         "icon": "$(refresh)"
       },
       {
-        "command": "scriptsRunner.openPackageJson",
+        "command": "quickScriptsRunner.openPackageJson",
         "title": "Open package.json",
         "icon": "$(file-code)"
       },
       {
-        "command": "scriptsRunner.changePackageManager",
+        "command": "quickScriptsRunner.changePackageManager",
         "title": "Change Package Manager",
         "icon": "$(package)"
       }
@@ -96,25 +96,25 @@
     "menus": {
       "view/title": [
         {
-          "command": "scriptsRunner.refresh",
-          "when": "view == scriptsRunnerExplorer",
+          "command": "quickScriptsRunner.refresh",
+          "when": "view == quickScriptsRunnerExplorer",
           "group": "navigation@1"
         },
         {
-          "command": "scriptsRunner.changePackageManager",
-          "when": "view == scriptsRunnerExplorer",
+          "command": "quickScriptsRunner.changePackageManager",
+          "when": "view == quickScriptsRunnerExplorer",
           "group": "navigation@2"
         },
         {
-          "command": "scriptsRunner.openPackageJson",
-          "when": "view == scriptsRunnerExplorer",
+          "command": "quickScriptsRunner.openPackageJson",
+          "when": "view == quickScriptsRunnerExplorer",
           "group": "navigation@3"
         }
       ],
       "view/item/context": [
         {
-          "command": "scriptsRunner.runScript",
-          "when": "view == scriptsRunnerExplorer && viewItem == script",
+          "command": "quickScriptsRunner.runScript",
+          "when": "view == quickScriptsRunnerExplorer && viewItem == script",
           "group": "inline"
         }
       ]

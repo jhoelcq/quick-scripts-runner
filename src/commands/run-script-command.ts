@@ -8,7 +8,7 @@ import * as vscode from 'vscode';
  * Command to execute a script
  */
 export class RunScriptCommand implements ICommand {
-  readonly id = 'scriptsRunner.runScript';
+  readonly id = 'quickScriptsRunner.runScript';
 
   constructor(
     private readonly scriptExecutor: IScriptExecutor,

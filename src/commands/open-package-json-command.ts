@@ -8,7 +8,7 @@ import { Logger } from '../utils/logger';
  * Command to open or create package.json
  */
 export class OpenPackageJsonCommand implements ICommand {
-  readonly id = 'scriptsRunner.openPackageJson';
+  readonly id = 'quickScriptsRunner.openPackageJson';
 
   /**
    * Executes the command

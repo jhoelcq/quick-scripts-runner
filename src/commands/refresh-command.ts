@@ -6,7 +6,7 @@ import * as vscode from 'vscode';
  * Command to refresh the scripts list
  */
 export class RefreshCommand implements ICommand {
-  readonly id = 'scriptsRunner.refresh';
+  readonly id = 'quickScriptsRunner.refresh';
 
   constructor(private readonly scriptsProvider: ScriptsProvider) {}
 

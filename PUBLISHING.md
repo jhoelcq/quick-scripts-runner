@@ -79,12 +79,12 @@ vsce login alckordev
 vsce package
 ```
 
-This creates `scripts-runner-1.0.0.vsix`
+This creates `quick-scripts-runner-1.0.0.vsix`
 
 ### 6. Test Package Locally (Optional)
 
 ```bash
-code --install-extension scripts-runner-1.0.0.vsix
+code --install-extension quick-scripts-runner-1.0.0.vsix
 ```
 
 ### 7. Publish to Marketplace

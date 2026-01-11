@@ -1,6 +1,6 @@
 # Change Log
 
-All notable changes to the "Scripts Runner" extension will be documented in this file.
+All notable changes to the "Quick Scripts Runner" extension will be documented in this file.
 
 ## [1.0.0] - 2026-01-11
 
@@ -18,8 +18,8 @@ All notable changes to the "Scripts Runner" extension will be documented in this
   - Change package manager
   - Open/create `package.json`
 - Configuration options:
-  - `scriptsRunner.defaultPackageManager`: Set default package manager
-  - `scriptsRunner.autoDetectPackageManager`: Enable/disable auto-detection
+  - `quickScriptsRunner.defaultPackageManager`: Set default package manager
+  - `quickScriptsRunner.autoDetectPackageManager`: Enable/disable auto-detection
 - Multi-workspace support
 - File watcher for automatic updates
 

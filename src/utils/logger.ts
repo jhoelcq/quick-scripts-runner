@@ -11,7 +11,7 @@ export class Logger {
    */
   static initialize(): void {
     if (!this.outputChannel) {
-      this.outputChannel = vscode.window.createOutputChannel('Scripts Runner');
+      this.outputChannel = vscode.window.createOutputChannel('Quick Scripts Runner');
     }
   }
 

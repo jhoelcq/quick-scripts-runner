@@ -18,7 +18,7 @@ import { ChangePackageManagerCommand } from './commands/change-package-manager-c
  */
 export function activate(context: vscode.ExtensionContext): void {
   Logger.initialize();
-  Logger.info('Scripts Runner activated');
+  Logger.info('Quick Scripts Runner activated');
 
   // 1. Create base services
   const configService = new ConfigurationService();
@@ -31,7 +31,7 @@ export function activate(context: vscode.ExtensionContext): void {
   const scriptsProvider = new ScriptsProvider(packageJsonReader, packageManagerDetector);
 
   // 3. Create TreeView
-  const treeView = vscode.window.createTreeView('scriptsRunnerExplorer', {
+  const treeView = vscode.window.createTreeView('quickScriptsRunnerExplorer', {
     treeDataProvider: scriptsProvider,
   });
 
@@ -87,13 +87,13 @@ export function activate(context: vscode.ExtensionContext): void {
   // 7. Add disposables
   context.subscriptions.push(statusBarService);
 
-  Logger.info('Scripts Runner initialized successfully');
+  Logger.info('Quick Scripts Runner initialized successfully');
 }
 
 /**
  * Deactivates the extension
  */
 export function deactivate(): void {
-  Logger.info('Scripts Runner deactivated');
+  Logger.info('Quick Scripts Runner deactivated');
   Logger.dispose();
 }
