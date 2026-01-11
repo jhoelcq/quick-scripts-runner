@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { ScriptTreeItem } from '../models/script-tree-item';
+import { ScriptTreeItem } from './script-tree-item';
 import { IPackageJsonReader } from '../services/package-json-reader';
 import { IPackageManagerDetector } from './package-manager-detector';
 import { Logger } from '../utils/logger';

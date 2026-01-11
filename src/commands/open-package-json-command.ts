@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
-import { ICommand } from './i-command';
+import { ICommand } from '../models/command';
 import { Logger } from '../utils/logger';
 
 /**

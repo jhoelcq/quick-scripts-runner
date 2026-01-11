@@ -3,7 +3,7 @@ import { PackageManager, PACKAGE_MANAGER_INFO } from '../models/package-manager'
 import { IConfigurationService } from '../services/configuration-service';
 import { ScriptsProvider } from '../core/scripts-provider';
 import { IStatusBarService } from '../services/status-bar-service';
-import { ICommand } from './i-command';
+import { ICommand } from '../models/command';
 import { Logger } from '../utils/logger';
 
 /**

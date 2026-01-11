@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { ICommand } from './i-command';
+import { ICommand } from '../models/command';
 
 /**
  * Centralized command registry

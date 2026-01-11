@@ -1,7 +1,7 @@
 import { Script } from '../models/script';
 import { IScriptExecutor } from '../core/script-executor';
 import { IPackageManagerDetector } from '../core/package-manager-detector';
-import { ICommand } from './i-command';
+import { ICommand } from '../models/command';
 import * as vscode from 'vscode';
 
 /**

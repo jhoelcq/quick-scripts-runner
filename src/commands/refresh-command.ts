@@ -1,5 +1,5 @@
 import { ScriptsProvider } from '../core/scripts-provider';
-import { ICommand } from './i-command';
+import { ICommand } from '../models/command';
 import * as vscode from 'vscode';
 
 /**

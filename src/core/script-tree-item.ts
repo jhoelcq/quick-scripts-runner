@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
-import { Script } from './script';
-import { PackageManager, PACKAGE_MANAGER_INFO } from './package-manager';
+import { Script } from '../models/script';
+import { PackageManager, PACKAGE_MANAGER_INFO } from '../models/package-manager';
 
 /**
  * Custom TreeItem to display scripts in the sidebar
