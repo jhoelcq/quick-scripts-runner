@@ -18,16 +18,27 @@ export class RunScriptCommand implements ICommand {
   /**
    * Executes the command
    */
-  async execute(script: Script): Promise<void> {
-    const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
+  async execute(script: Script, workspaceFolder?: vscode.WorkspaceFolder): Promise<void> {
+    let activeWorkspace = workspaceFolder;
 
-    if (!workspaceFolder) {
+    if (!activeWorkspace) {
+      const activeEditor = vscode.window.activeTextEditor;
+      if (activeEditor?.document.uri) {
+        activeWorkspace = vscode.workspace.getWorkspaceFolder(activeEditor.document.uri);
+      }
+    }
+
+    if (!activeWorkspace) {
+      activeWorkspace = vscode.workspace.workspaceFolders?.[0];
+    }
+
+    if (!activeWorkspace) {
       vscode.window.showErrorMessage('No workspace open');
       return;
     }
 
-    const packageManager = this.packageManagerDetector.detect(workspaceFolder.uri.fsPath);
+    const packageManager = this.packageManagerDetector.detect(activeWorkspace.uri.fsPath);
 
-    this.scriptExecutor.execute(script, packageManager);
+    this.scriptExecutor.execute(script, packageManager, activeWorkspace);
   }
 }

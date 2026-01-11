@@ -8,7 +8,6 @@ import { Logger } from '../utils/logger';
  * Watches for changes in relevant files and updates the view
  */
 export class FileWatcher {
-  private fileWatcher: vscode.FileSystemWatcher | undefined;
   private disposables: vscode.Disposable[] = [];
 
   constructor(
@@ -21,32 +20,52 @@ export class FileWatcher {
    * Initializes the file watcher
    */
   start(): void {
-    const pattern = new vscode.RelativePattern(
-      vscode.workspace.workspaceFolders?.[0] || '',
-      '**/{package.json,*lock.yaml,*.lock,*.lockb}'
-    );
+    const workspaceFolders = vscode.workspace.workspaceFolders;
 
-    this.fileWatcher = vscode.workspace.createFileSystemWatcher(pattern);
+    if (!workspaceFolders || workspaceFolders.length === 0) {
+      Logger.debug('No workspace folders to watch');
+      return;
+    }
 
-    this.fileWatcher.onDidChange(() => this.handleFileChange());
-    this.fileWatcher.onDidCreate(() => this.handleFileChange());
-    this.fileWatcher.onDidDelete(() => this.handleFileChange());
+    // Create watchers for all workspace folders
+    for (const folder of workspaceFolders) {
+      const pattern = new vscode.RelativePattern(
+        folder,
+        '**/{package.json,*lock.yaml,*.lock,*.lockb}'
+      );
 
-    this.disposables.push(this.fileWatcher);
+      const watcher = vscode.workspace.createFileSystemWatcher(pattern);
 
-    Logger.info('File watcher started');
+      watcher.onDidChange(() => this.handleFileChange(folder));
+      watcher.onDidCreate(() => this.handleFileChange(folder));
+      watcher.onDidDelete(() => this.handleFileChange(folder));
+
+      this.disposables.push(watcher);
+    }
+
+    Logger.info(`File watcher started for ${workspaceFolders.length} workspace(s)`);
   }
 
   /**
    * Handles changes in watched files
    */
-  private handleFileChange(): void {
-    Logger.debug('Relevant file modified, refreshing...');
+  private handleFileChange(workspaceFolder: vscode.WorkspaceFolder): void {
+    Logger.debug(`Relevant file modified in ${workspaceFolder.name}, refreshing...`);
     this.scriptsProvider.refresh();
 
-    const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
-    if (workspaceFolder) {
-      const packageManager = this.packageManagerDetector.detect(workspaceFolder.uri.fsPath);
+    // Update status bar with active workspace
+    let activeWorkspace: vscode.WorkspaceFolder | undefined = workspaceFolder;
+
+    const activeEditor = vscode.window.activeTextEditor;
+    if (activeEditor?.document.uri) {
+      const editorWorkspace = vscode.workspace.getWorkspaceFolder(activeEditor.document.uri);
+      if (editorWorkspace) {
+        activeWorkspace = editorWorkspace;
+      }
+    }
+
+    if (activeWorkspace) {
+      const packageManager = this.packageManagerDetector.detect(activeWorkspace.uri.fsPath);
       this.statusBarService.update(packageManager);
     }
   }

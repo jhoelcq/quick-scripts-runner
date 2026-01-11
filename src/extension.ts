@@ -37,14 +37,35 @@ export function activate(context: vscode.ExtensionContext): void {
 
   context.subscriptions.push(treeView);
 
-  // 4. Initialize StatusBar
-  const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
-  if (workspaceFolder && packageJsonReader.exists(workspaceFolder.uri.fsPath)) {
-    const packageManager = packageManagerDetector.detect(workspaceFolder.uri.fsPath);
-    statusBarService.update(packageManager);
-  } else {
-    statusBarService.hide();
-  }
+  // 4. Initialize StatusBar with active workspace
+  const updateStatusBar = (): void => {
+    let activeWorkspace: vscode.WorkspaceFolder | undefined;
+
+    const activeEditor = vscode.window.activeTextEditor;
+    if (activeEditor?.document.uri) {
+      activeWorkspace = vscode.workspace.getWorkspaceFolder(activeEditor.document.uri);
+    }
+
+    if (!activeWorkspace) {
+      activeWorkspace = vscode.workspace.workspaceFolders?.[0];
+    }
+
+    if (activeWorkspace && packageJsonReader.exists(activeWorkspace.uri.fsPath)) {
+      const packageManager = packageManagerDetector.detect(activeWorkspace.uri.fsPath);
+      statusBarService.update(packageManager);
+    } else {
+      statusBarService.hide();
+    }
+  };
+
+  updateStatusBar();
+
+  // Listen for active editor changes to update status bar
+  context.subscriptions.push(
+    vscode.window.onDidChangeActiveTextEditor(() => {
+      updateStatusBar();
+    })
+  );
 
   // 5. Initialize FileWatcher
   const fileWatcher = new FileWatcher(scriptsProvider, statusBarService, packageManagerDetector);
