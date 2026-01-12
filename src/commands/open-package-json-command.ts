@@ -14,27 +14,73 @@ export class OpenPackageJsonCommand implements ICommand {
    * Executes the command
    */
   async execute(): Promise<void> {
-    const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
+    const workspaceFolders = vscode.workspace.workspaceFolders;
 
-    if (!workspaceFolder) {
+    if (!workspaceFolders || workspaceFolders.length === 0) {
       vscode.window.showErrorMessage('No workspace open');
       return;
     }
 
-    const packageJsonPath = path.join(workspaceFolder.uri.fsPath, 'package.json');
+    // Try to detect active workspace based on active editor
+    let activeWorkspace: vscode.WorkspaceFolder | undefined;
+
+    const activeEditor = vscode.window.activeTextEditor;
+    if (activeEditor?.document.uri) {
+      activeWorkspace = vscode.workspace.getWorkspaceFolder(activeEditor.document.uri);
+    }
+
+    // If no active workspace detected, check if there are multiple workspaces with package.json
+    if (!activeWorkspace && workspaceFolders.length > 1) {
+      // Get all workspaces that have package.json
+      const workspacesWithPackageJson = workspaceFolders.filter((folder) =>
+        fs.existsSync(path.join(folder.uri.fsPath, 'package.json'))
+      );
+
+      if (workspacesWithPackageJson.length > 1) {
+        // Show QuickPick to let user choose which workspace
+        const selected = await vscode.window.showQuickPick(
+          workspacesWithPackageJson.map((folder) => ({
+            label: folder.name,
+            description: folder.uri.fsPath,
+            folder,
+          })),
+          {
+            placeHolder: 'Select workspace to open package.json',
+          }
+        );
+
+        if (!selected) {
+          return; // User cancelled
+        }
+
+        activeWorkspace = selected.folder;
+      } else if (workspacesWithPackageJson.length === 1) {
+        activeWorkspace = workspacesWithPackageJson[0];
+      } else {
+        // No workspaces have package.json, use first one for creation
+        activeWorkspace = workspaceFolders[0];
+      }
+    }
+
+    // Fallback to first workspace if still no active workspace
+    if (!activeWorkspace) {
+      activeWorkspace = workspaceFolders[0];
+    }
+
+    const packageJsonPath = path.join(activeWorkspace.uri.fsPath, 'package.json');
 
     if (fs.existsSync(packageJsonPath)) {
       const document = await vscode.workspace.openTextDocument(packageJsonPath);
       await vscode.window.showTextDocument(document);
-      Logger.info('package.json opened');
+      Logger.info(`package.json opened from workspace: ${activeWorkspace.name}`);
     } else {
       const result = await vscode.window.showInformationMessage(
-        'package.json not found. Do you want to create one?',
+        `package.json not found in ${activeWorkspace.name}. Do you want to create one?`,
         'Create'
       );
 
       if (result === 'Create') {
-        await this.createPackageJson(workspaceFolder.uri.fsPath);
+        await this.createPackageJson(activeWorkspace.uri.fsPath);
       }
     }
   }
